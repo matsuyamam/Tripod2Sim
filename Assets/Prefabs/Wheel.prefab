@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 6756309174675151797}
   - component: {fileID: 6756309174675151796}
   - component: {fileID: 6756309174675151795}
-  - component: {fileID: 6756309174675151794}
-  - component: {fileID: 6756309174675151799}
+  - component: {fileID: 5567391079520336938}
+  - component: {fileID: 7549970993351549849}
   m_Layer: 0
-  m_Name: Base
-  m_TagString: Untagged
+  m_Name: Wheel
+  m_TagString: Wheel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2776,7 +2776,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6756309174675151793}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2818,21 +2818,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6756309174675151793}
   m_Mesh: {fileID: 0}
---- !u!64 &6756309174675151794
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6756309174675151793}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
---- !u!54 &6756309174675151799
+--- !u!54 &5567391079520336938
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2848,3 +2834,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7549970993351549849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6756309174675151793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c453610c0cedce747881b11ae94404e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Arm: {fileID: 1572612084984224626, guid: 29f9f5873757f9b4f9564d81a1130246, type: 3}
+  Box: {fileID: 758472336382911348, guid: 01e622707ea2d8449910be2e954d415d, type: 3}

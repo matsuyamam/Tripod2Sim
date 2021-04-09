@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: -1438137168255734066}
   - component: {fileID: 5861570529717115763}
   m_Layer: 0
-  m_Name: Pint
-  m_TagString: Untagged
+  m_Name: Prize
+  m_TagString: Prize
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

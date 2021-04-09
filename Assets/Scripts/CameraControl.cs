@@ -9,16 +9,17 @@ public class CameraControl : MonoBehaviour
     public GameObject targetObject;
     public float ZoomSensitivity;
     public float PitchSensitivity;
-    public float Yaw;
 
+    float Yaw;
     float rotX;
     float length;
 
     // Start is called before the first frame update
     void Start()
     {
-        rotX = -30f;
-        length = 2f;
+        Yaw = 180f;
+        rotX = -40f;
+        length = 0.85f;
     }
 
     // Update is called once per frame
