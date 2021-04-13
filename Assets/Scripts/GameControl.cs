@@ -147,6 +147,7 @@ public class GameControl : MonoBehaviour
         if (float.TryParse(input.text, out value))
         {
             value = Mathf.Clamp(value, 0f, 360f);
+            input.text = value.ToString();
             wheel.GetComponent<WheelControl>().WheelSpeedMax = value;
         }
     }
@@ -156,7 +157,8 @@ public class GameControl : MonoBehaviour
         float value;
         if (float.TryParse(input.text, out value))
         {
-            value = Mathf.Clamp(value, 0f, 360f);
+            value = Mathf.Clamp(value, 0f, 1080f);
+            input.text = value.ToString();
             wheel.GetComponent<WheelControl>().WheelAcceleration = value;
         }
     }
@@ -167,6 +169,7 @@ public class GameControl : MonoBehaviour
         if (float.TryParse(input.text, out value))
         {
             value = Mathf.Clamp(value, 0f, 360f);
+            input.text = value.ToString();
             hammer.GetComponent<HammerControl>().ImpactSpeed = value;
         }
     }
@@ -177,6 +180,7 @@ public class GameControl : MonoBehaviour
         if (float.TryParse(input.text, out value))
         {
             value = Mathf.Clamp(value, 0f, 24f);
+            input.text = value.ToString();
             hammer.GetComponent<HammerControl>().ImpactWidth = value;
         }
     }
