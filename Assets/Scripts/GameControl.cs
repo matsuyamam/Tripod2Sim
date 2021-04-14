@@ -73,9 +73,9 @@ public class GameControl : MonoBehaviour
 
         GameObject canvas = GameObject.Find("Canvas");
         InputField[] inputs = canvas.GetComponentsInChildren<InputField>();
-        inputs[0].text = wheel.GetComponent<WheelControl>().WheelSpeedMax.ToString();
-        inputs[1].text = wheel.GetComponent<WheelControl>().WheelAcceleration.ToString();
-        inputs[2].text = hammer.GetComponent<HammerControl>().ImpactSpeed.ToString();
+        inputs[0].text = wheel.GetComponent<WheelControl>().WheelGoAroundTime.ToString();
+        inputs[1].text = wheel.GetComponent<WheelControl>().WheelAccelerationTime.ToString();
+        inputs[2].text = hammer.GetComponent<HammerControl>().ImpactTime.ToString();
         inputs[3].text = hammer.GetComponent<HammerControl>().ImpactWidth.ToString();
         Toggle[] toggls = canvas.GetComponentsInChildren<Toggle>();
         toggls[0].isOn = false;
@@ -141,36 +141,36 @@ public class GameControl : MonoBehaviour
         }
     }
 
-    public void ChangeWheelSpeed(InputField input)
+    public void ChangeWheelGoAroundTime(InputField input)
     {
         float value;
         if (float.TryParse(input.text, out value))
         {
-            value = Mathf.Clamp(value, 0f, 360f);
+            value = Mathf.Clamp(value, 1f, 120f);
             input.text = value.ToString();
-            wheel.GetComponent<WheelControl>().WheelSpeedMax = value;
+            wheel.GetComponent<WheelControl>().WheelGoAroundTime = value;
         }
     }
 
-    public void ChangeWheelAcceleration(InputField input)
+    public void ChangeWheelAccelerationTime(InputField input)
     {
         float value;
         if (float.TryParse(input.text, out value))
         {
-            value = Mathf.Clamp(value, 0f, 1080f);
+            value = Mathf.Clamp(value, 0.1f, 10f);
             input.text = value.ToString();
-            wheel.GetComponent<WheelControl>().WheelAcceleration = value;
+            wheel.GetComponent<WheelControl>().WheelAccelerationTime = value;
         }
     }
 
-    public void ChangeImpactSpeed(InputField input)
+    public void ChangeImpactTime(InputField input)
     {
         float value;
         if (float.TryParse(input.text, out value))
         {
-            value = Mathf.Clamp(value, 0f, 360f);
+            value = Mathf.Clamp(value, 0.1f, 10f);
             input.text = value.ToString();
-            hammer.GetComponent<HammerControl>().ImpactSpeed = value;
+            hammer.GetComponent<HammerControl>().ImpactTime = value;
         }
     }
 

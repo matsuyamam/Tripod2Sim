@@ -18,7 +18,7 @@ public class HammerControl : MonoBehaviour
     private float rotation;
     private ImtStateMachine<HammerControl> hammerState;
 
-    public float ImpactSpeed { get; set; }
+    public float ImpactTime { get; set; }
     public float ImpactWidth { get; set; }
 
     public GameControl gameControl { get; set; }
@@ -35,7 +35,7 @@ public class HammerControl : MonoBehaviour
         hammerState.SetStartState<StateInitial>();
         hammerState.Update();
 
-        ImpactSpeed = 180f;
+        ImpactTime = 0.3f;
         ImpactWidth = 6f;
     }
     
@@ -97,7 +97,7 @@ public class HammerControl : MonoBehaviour
 
         protected internal override void Update()
         {
-            Context.rotation += Context.ImpactSpeed * Time.deltaTime;
+            Context.rotation += (60f - 10f) / Context.ImpactTime * Time.deltaTime;
             if (Context.rotation > 60.0f)
             {
                 Context.rotation = 60.0f;

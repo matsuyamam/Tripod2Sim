@@ -15,25 +15,23 @@ public class WheelControl : MonoBehaviour
     private float wheelRotation;
     private float wheelSpeedCurrent;
     private float wheelSpeedTarget;
-    private float wheelSpeedMax;
+    private float wheelGoAroundTime;
+    private float wheelAccelerationTime;
     private float wheelAcceleration;
 
-    public float WheelSpeedMax
+    public float WheelGoAroundTime
     {
-        get { return wheelSpeedMax; }
+        get { return wheelGoAroundTime; }
         set
         {
-            wheelSpeedMax = value;
-            if (wheelSpeedTarget > 0f)
-            {
-                wheelSpeedTarget = wheelSpeedMax;
-            }
+            wheelGoAroundTime = value;
+            ApplySpeedAndAcceleration();
         }
     }
-    public float WheelAcceleration
+    public float WheelAccelerationTime
     {
-        get { return wheelAcceleration; }
-        set { wheelAcceleration = value; }
+        get { return wheelAccelerationTime; }
+        set { wheelAccelerationTime = value; }
     }
 
     public GameControl gameControl { get; set; }
@@ -63,8 +61,8 @@ public class WheelControl : MonoBehaviour
             arms[i].GetComponent<ArmControl>().wheelControl = this;
         }
 
-        WheelSpeedMax = 9f;
-        WheelAcceleration = 20f;
+        wheelGoAroundTime = 40f;
+        WheelAccelerationTime = 1f;
     }
 
 
@@ -77,17 +75,16 @@ public class WheelControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (wheelSpeedCurrent > wheelSpeedTarget)
+        wheelSpeedCurrent += wheelAcceleration * Time.deltaTime;
+        if (wheelAcceleration < 0f)
         {
-            wheelSpeedCurrent -= wheelAcceleration * Time.deltaTime;
-            if (wheelSpeedCurrent < 0f)
+            if (wheelSpeedCurrent < wheelSpeedTarget)
             {
-                wheelSpeedCurrent = 0f;
+                wheelSpeedCurrent = wheelSpeedTarget;
             }
         }
-        if (wheelSpeedCurrent < wheelSpeedTarget)
+        if (wheelAcceleration > 0f)
         {
-            wheelSpeedCurrent += wheelAcceleration * Time.deltaTime;
             if (wheelSpeedCurrent > wheelSpeedTarget)
             {
                 wheelSpeedCurrent = wheelSpeedTarget;
@@ -114,12 +111,17 @@ public class WheelControl : MonoBehaviour
         DrawGizmos();
     }
 
+    void ApplySpeedAndAcceleration()
+    {
+        wheelSpeedTarget = 360f / wheelGoAroundTime;
+        wheelAcceleration = (wheelSpeedTarget - wheelSpeedCurrent) / wheelAccelerationTime;
+    }
+
     public void Reset()
     {
         wheelRotation = 0.0f;
         wheelSpeedCurrent = 0.0f;
-        wheelSpeedTarget = WheelSpeedMax;
-        wheelAcceleration = WheelAcceleration;
+        ApplySpeedAndAcceleration();
 
         for (int i = 0; i < NumArms; i++)
         {
@@ -144,7 +146,7 @@ public class WheelControl : MonoBehaviour
 
     public void StartRotation()
     {
-        wheelSpeedTarget = WheelSpeedMax;
+        ApplySpeedAndAcceleration();
     }
 
     public void StopRotation()
