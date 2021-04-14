@@ -144,14 +144,16 @@ public class WheelControl : MonoBehaviour
         }
     }
 
-    public void StartRotation()
+    public void StartRotation(float goAroundTime)
     {
+        wheelGoAroundTime = goAroundTime;
         ApplySpeedAndAcceleration();
     }
 
     public void StopRotation()
     {
-        wheelSpeedTarget = 0f;
+        wheelGoAroundTime = float.PositiveInfinity;
+        ApplySpeedAndAcceleration();
     }
 
     public void CheckImpact(float impactWidth)

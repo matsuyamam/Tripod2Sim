@@ -29,6 +29,8 @@ public class GameControl : MonoBehaviour
 
     private bool supportDisdplay;
 
+    private float goAroundTime;
+
     private const int NumPrizes1 = 11;
     private const int NumPrizes2 = 10;
     private const int NumPrizes3 = 9;
@@ -58,6 +60,7 @@ public class GameControl : MonoBehaviour
 
         wheel = Instantiate(Wheel, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
         wheel.GetComponent<WheelControl>().gameControl = this;
+        goAroundTime = wheel.GetComponent<WheelControl>().WheelGoAroundTime;
 
         prizes = new GameObject[NumPrizes];
         for (int i = 0; i < NumPrizes; i++)
@@ -149,6 +152,8 @@ public class GameControl : MonoBehaviour
             value = Mathf.Clamp(value, 1f, 120f);
             input.text = value.ToString();
             wheel.GetComponent<WheelControl>().WheelGoAroundTime = value;
+
+            goAroundTime = value;
         }
     }
 
@@ -198,7 +203,7 @@ public class GameControl : MonoBehaviour
 
     void WheelStart()
     {
-        wheel.GetComponent<WheelControl>().StartRotation();
+	    wheel.GetComponent<WheelControl>().StartRotation(goAroundTime);
     }
 
     void WheelStop()

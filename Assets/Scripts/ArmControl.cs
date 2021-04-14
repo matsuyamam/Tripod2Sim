@@ -7,7 +7,12 @@ public class ArmControl : MonoBehaviour
     public WheelControl wheelControl { get; set; }
 
     private LineRenderer lineRenderer;
+    private Material lineMaterial;
 
+    private void Awake()
+    {
+        lineMaterial = new Material(Shader.Find("Sprites/Default"));
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +50,7 @@ public class ArmControl : MonoBehaviour
             };
 
             lineRenderer.positionCount = positions.Length;
-            lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+            lineRenderer.material = lineMaterial;
             lineRenderer.startColor = Color.white;
             lineRenderer.endColor = Color.white;
             lineRenderer.startWidth = 0.02f;                   // ŠJŽn“_‚Ì‘¾‚³‚ð0.1‚É‚·‚é
